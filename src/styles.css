@@ -94,6 +94,7 @@ main [data-section] { scroll-margin-top: 88px; }
 .mobile-nav a.nav-active, .mobile-nav a.nav-active svg { color: var(--primary); }
 @keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
 @media (min-width: 851px) { .header-inner { display: flex; } .desktop-nav { min-width: 0; } }
+@media (max-width: 850px) { .site-header { --header-height: 72px; } .site-header.is-scrolled { --header-height: 64px; } .language-switch .language-button { height: 48px; } }
 .hero { position: relative; min-height: 704px; overflow: hidden; background: var(--background); }
 .hero-image { position: absolute; width: 1050px; height: 700px; object-fit: cover; right: -95px; top: 10px; opacity: .45; }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, var(--background) 0%, var(--background) 24%, transparent 69%), linear-gradient(0deg, var(--background), transparent 25%, transparent 85%, var(--background)); }
@@ -162,7 +163,7 @@ main [data-section] { scroll-margin-top: 88px; }
   .site-header .brand-cursor, .mobile-overlay-header .brand-cursor { margin-left: 0; }
   .language-switch { padding: 3px; grid-template-columns: repeat(3, 30px); }
   .language-indicator { width: 30px; }
-  .language-switch .language-button { height: 40px; }
+  .language-switch .language-button { height: 48px; }
   .hero { min-height: 0; }
   .hero-content { padding-block: 32px; }
   .hero h1 { font-size: var(--type-hero); }

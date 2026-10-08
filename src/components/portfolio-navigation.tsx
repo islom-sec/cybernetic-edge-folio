@@ -28,7 +28,7 @@ export function PortfolioNavigation() {
         current = '/';
         document.querySelectorAll<HTMLElement>('main [data-section]').forEach(section => {
           if (section.getBoundingClientRect().top <= window.innerHeight * 0.35) {
-            current = section.dataset.section ?? current;
+            current = section.dataset['section'] ?? current;
           }
         });
       }
