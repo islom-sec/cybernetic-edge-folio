@@ -1,4 +1,4 @@
 # Portfolio roadmap
-- [ ] Create dark neon portfolio and all content pages.
-- [ ] Implement complete EN/RU/UZ language switching.
-- [ ] Verify navigation, translations, and mobile layout.
+- [x] Create dark neon portfolio and all content pages.
+- [x] Implement complete EN/RU/UZ language switching.
+- [x] Verify navigation, translations, and mobile layout.
