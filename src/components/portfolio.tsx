@@ -1,15 +1,21 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import { ArrowUpRight, ArrowRight, ArrowDown, Terminal, ShieldCheck, Code2, Crosshair, Github, Mail, Send, Menu, X, ChevronRight, Globe, Flag, Network, Cpu, Check, Crown, Gamepad2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useLanguage } from '@/lib/language';
-import { languages, paths } from '@/lib/portfolio-content';
+import { PortfolioNavigation } from '@/components/portfolio-navigation';
 import shieldImage from '@/assets/cyber-shield.jpg';
 
 export function PortfolioShell({ children }: { children: ReactNode }) {
-  const { t, language, setLanguage } = useLanguage(); const [menuOpen, setMenuOpen] = useState(false);
-  return <><header className="site-header"><div className="page-width header-inner"><Link to="/" className="brand" aria-label="Mirislom home"><Terminal size={23}/><span>mirislom<span className="text-primary">.</span></span><span className="brand-cursor">_</span></Link><nav className="desktop-nav" aria-label="Main navigation">{paths.map((path, i) => <Link key={path} to={path} activeOptions={{ exact: true }} activeProps={{ className: 'nav-active' }}>{t.nav[i]}</Link>)}</nav><div className="header-tools"><div className="language-switch" aria-label="Language">{languages.map(lang => <Button key={lang} variant="language" size="sm" aria-pressed={language === lang} onClick={() => setLanguage(lang)}>{lang}</Button>)}</div><Button variant="ghost" size="icon" className="mobile-menu-button" aria-label={menuOpen ? t.close : t.nav[0]} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X/> : <Menu/>}</Button></div></div>{menuOpen && <nav className="mobile-nav" aria-label="Mobile navigation">{paths.map((path, i) => <Link key={path} to={path} onClick={() => setMenuOpen(false)}>{t.nav[i]}<ArrowUpRight size={16}/></Link>)}</nav>}</header><main>{children}</main><footer className="site-footer page-width"><Link to="/" className="brand"><Terminal size={20}/><span>mirislom<span className="text-primary">.</span></span></Link><p>{t.footer}</p><span className="footer-ethics"><ShieldCheck size={14}/>{t.ethics}</span><span className="footer-copyright">© 2026 {t.copyright}</span></footer></>;
+  const { t, language } = useLanguage();
+  const content = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const animation = content.current?.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+    return () => animation?.cancel();
+  }, [language]);
+  return <><PortfolioNavigation/><div ref={content} className="translated-content"><main>{children}</main><footer className="site-footer page-width"><Link to="/" className="brand"><Terminal size={20}/><span>mirislom<span className="text-primary">.</span></span></Link><p>{t.footer}</p><span className="footer-ethics"><ShieldCheck size={14}/>{t.ethics}</span><span className="footer-copyright">© 2026 {t.copyright}</span></footer></div></>;
 }
 function SectionHeading({ label, title, accent, body }: { label: string; title: string; accent: string; body?: string | undefined }) { return <div className="section-heading"><p className="eyebrow">{label}</p><h2>{title} <span className="text-muted-foreground">{accent}</span></h2>{body && <p className="section-intro">{body}</p>}</div>; }
 export function HomePage() {
