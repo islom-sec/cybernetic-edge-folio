@@ -13,4 +13,4 @@
 - Keep translations in a typed shared content catalog and language state in the shared provider so switching language updates every page without navigation resets.
 - Use separate TanStack leaf routes for portfolio sections and a shared portfolio shell so every section can be linked directly and has its own metadata.
 - Keep personal contact links and unverified accomplishments clearly unavailable until actual user-supplied URLs and data are provided, rather than fabricating identity or results.
-- Define visual roles and responsive portfolio styling in src/styles.css; interactive commands use the shared Button variants to preserve the design system.
+- Define all visual roles, type scales, spacing, surfaces, and effects centrally in src/styles.css; shared Button variants consume these tokens so changes stay consistent across pages.
