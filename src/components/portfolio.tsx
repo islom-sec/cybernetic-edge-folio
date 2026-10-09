@@ -9,6 +9,8 @@ import { HeroTerminal, HeroTyper } from '@/components/hero-terminal';
 import { ChessStats, CHESS_USERNAME } from '@/components/chess-stats';
 import { Reveal } from '@/components/reveal';
 import shieldImage from '@/assets/cyber-shield.jpg';
+import { EasterEgg } from '@/components/easter-egg';
+import { extras, skillLevels, writeups, type Platform } from '@/lib/extras-content';
 
 export function PortfolioShell({ children }: { children: ReactNode }) {
   const { t, language } = useLanguage();
