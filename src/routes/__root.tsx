@@ -13,7 +13,10 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "@/lib/language";
+import { EffectsProvider } from "@/lib/effects-provider";
 import { PortfolioShell } from "@/components/portfolio";
+import { MatrixRain } from "@/components/matrix-rain";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -124,7 +127,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <LanguageProvider><PortfolioShell><Outlet /></PortfolioShell></LanguageProvider>
+      <EffectsProvider><LanguageProvider><MatrixRain/><PortfolioShell><Outlet /></PortfolioShell></LanguageProvider><Toaster /></EffectsProvider>
     </QueryClientProvider>
   );
 }

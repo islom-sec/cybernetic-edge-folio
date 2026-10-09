@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
-import { ArrowUpRight, ArrowRight, ArrowDown, Terminal, ShieldCheck, Code2, Crosshair, Github, Mail, Send, Menu, X, ChevronRight, Globe, Flag, Network, Cpu, Check, Crown, Gamepad2, ExternalLink, FileText, Globe2 } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ArrowDown, Terminal, ShieldCheck, Code2, Crosshair, Github, Mail, Send, Menu, X, ChevronRight, Globe, Flag, Network, Cpu, Check, Crown, Gamepad2, ExternalLink, FileText, Globe2, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useLanguage } from '@/lib/language';
@@ -11,6 +11,20 @@ import { Reveal } from '@/components/reveal';
 import shieldImage from '@/assets/cyber-shield.jpg';
 import { EasterEgg } from '@/components/easter-egg';
 import { extras, skillLevels, writeups, type Platform } from '@/lib/extras-content';
+import { toast } from 'sonner';
+import { useEffects } from '@/lib/effects-provider';
+
+function useCopyToClipboard() {
+  const { playClick } = useEffects();
+  return (text: string, label: string) => {
+    playClick();
+    navigator.clipboard?.writeText(text).then(() => {
+      toast.success(`Copied: ${label}`, { duration: 2000 });
+    }).catch(() => {
+      toast.error('Could not copy to clipboard', { duration: 2000 });
+    });
+  };
+}
 
 export function PortfolioShell({ children }: { children: ReactNode }) {
   const { t, language } = useLanguage();
@@ -93,10 +107,10 @@ export function RealProjectsSection() {
 }
 export function ProjectsSection({ preview = false }: { preview?: boolean }) { const { t } = useLanguage(); const [selected, setSelected] = useState<number | null>(null); const icons = [Flag, Network, Code2]; return <section data-section="/projects" className={`content-section page-width ${preview ? '' : 'standalone-section'}`}><div className="section-top"><SectionHeading label={t.projectsLabel} title={t.projectsTitle} accent={t.projectsAccent} body={preview ? undefined : t.projectsIntro}/>{preview && <Button asChild variant="link"><Link to="/projects">{t.allProjects}<ArrowUpRight/></Link></Button>}</div>{!preview && <RealProjectsSection/>}<div className="project-grid">{t.projectTitles.map((title, i) => { const Icon = icons[i]; return <article key={title} className="project-card"><div className={`project-visual project-visual-${i}`}>{Icon && <Icon size={58} strokeWidth={1}/>}<span className="visual-code">{['root@ctf:~$ ./explore', 'def discover():', '< build. learn. repeat. />'][i]}</span><span className="visual-corner">0{i+1} / LAB</span></div><div className="project-card-body"><p className="eyebrow">{t.projectTypes[i]}</p><h3>{title}</h3><p>{t.projectDescriptions[i]}</p><div className="project-bottom"><span><span className="status-dot"/>{t.projectStatus}</span><Button variant="ghost" size="icon" aria-label={`${t.projectDetails}: ${title}`} onClick={() => setSelected(i)}><ArrowUpRight/></Button></div></div></article>; })}</div><Dialog open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}><DialogContent showCloseButton={false}><DialogHeader><p className="eyebrow">{t.upcoming}</p><DialogTitle>{selected !== null ? t.projectTitles[selected] : ''}</DialogTitle><DialogDescription>{selected !== null ? t.projectNotes[selected] : ''}</DialogDescription></DialogHeader><Button variant="outline" onClick={() => setSelected(null)}>{t.close}<X/></Button></DialogContent></Dialog></section>; }
 export function StrategyPage() { const { t } = useLanguage(); const [expanded, setExpanded] = useState(false); return <section className="content-section page-width standalone-section"><SectionHeading label={t.strategyLabel} title={t.strategyTitle} accent={t.strategyAccent} body={t.strategyIntro}/><div className="strategy-grid"><article className="strategy-card"><div className="chess-board" aria-hidden="true">{Array.from({ length: 32 }, (_, i) => <span key={i} className={(Math.floor(i/8)+i)%2 ? 'square-dark' : 'square-light'}>{i===20 ? '♞' : i===11 ? '♜' : i===27 ? '♔' : ''}</span>)}</div><Crown className="text-primary"/><h3>{t.chessTitle}</h3><p>{t.chessBody}</p><Button asChild variant="outline"><a href={`https://www.chess.com/member/${CHESS_USERNAME}`} target="_blank" rel="noopener noreferrer">{t.chessLink}<ArrowUpRight/></a></Button></article><article className="strategy-card"><div className="tactical-visual" aria-hidden="true"><Crosshair size={110} strokeWidth={0.6}/><span>CS2 <span>/</span> RDR2</span></div><Gamepad2 className="text-primary"/><h3>{t.gamingTitle}</h3><p>{t.gamingBody}</p><Button variant="outline" aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>{t.gamingLink}<ChevronRight className={expanded ? 'rotate-90' : ''}/></Button>{expanded && <ul className="strategy-highlights">{t.highlights.map(h => <li key={h}><Check size={16}/>{h}</li>)}</ul>}</article></div><ChessStats/></section>; }
-export function ContactPage() { const { t } = useLanguage(); const contacts = [
+export function ContactPage() { const { t } = useLanguage(); const copy = useCopyToClipboard(); const contacts = [
   { name: 'Telegram', handle: '@Islom_0034', desc: t.contactDescriptions[2], href: 'https://t.me/Islom_0034', Icon: Send },
   { name: 'Hack The Box', handle: '@Egoist2330', desc: t.contactDescriptions[1], href: undefined, Icon: ShieldCheck },
   { name: 'Steam', handle: 'Steam', desc: t.steamDesc, href: 'https://steamcommunity.com/profiles/76561198675350684/', Icon: Gamepad2 },
   { name: 'GitHub', handle: undefined, desc: t.contactDescriptions[0], href: undefined, Icon: Github },
   { name: 'Email', handle: undefined, desc: t.contactDescriptions[3], href: undefined, Icon: Mail },
-]; return <section className="content-section page-width standalone-section contact-page"><SectionHeading label={t.contactLabel} title={t.contactTitle} accent={t.contactAccent} body={t.contactBody}/><div className="contact-grid">{contacts.map(({ name, handle, desc, href, Icon }) => <article key={name} className="contact-item"><Icon size={27}/><h3>{name}</h3><p>{desc}</p>{href ? <a className="contact-link" href={href} target="_blank" rel="noopener noreferrer">{handle}<ArrowUpRight size={14}/></a> : handle ? <span className="contact-handle">{handle}</span> : <span className="contact-pending">{t.notConnected}</span>}</article>)}</div></section>; }
+]; return <section className="content-section page-width standalone-section contact-page"><SectionHeading label={t.contactLabel} title={t.contactTitle} accent={t.contactAccent} body={t.contactBody}/><div className="contact-grid">{contacts.map(({ name, handle, desc, href, Icon }) => <article key={name} className="contact-item"><Icon size={27}/><h3>{name}</h3><p>{desc}</p>{href ? <a className="contact-link" href={href} target="_blank" rel="noopener noreferrer">{handle}<ArrowUpRight size={14}/></a> : handle ? <button type="button" className="contact-copy-btn" onClick={() => copy(handle, handle)}><span className="contact-handle">{handle}</span><Copy size={14}/></button> : <span className="contact-pending">{t.notConnected}</span>}</article>)}</div></section>; }
