@@ -32,10 +32,10 @@ export function RealProjectsSection() {
       <SectionHeading label={t.realProjectsLabel} title={t.realProjectsTitle} accent={t.realProjectsAccent} body={t.realProjectsIntro} />
       <div className="real-project-grid">
         {t.realProjectTitles.map((title, i) => {
-          const LinkIcon = linkIcons[i];
+          const LinkIcon = linkIcons[i] ?? Globe2;
           const href = t.realProjectLinks[i];
           const isExternal = t.realProjectExternal[i];
-          const tags = t.realProjectTags[i];
+          const tags = t.realProjectTags[i] ?? [];
           return (
             <article key={title} className="real-project-card">
               <div className="real-project-header">
