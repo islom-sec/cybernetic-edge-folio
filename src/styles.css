@@ -222,7 +222,7 @@ main [data-section] { scroll-margin-top: 88px; }
 .terminal-input-row input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: var(--foreground); font: inherit; caret-color: var(--primary); }
 .terminal-input-row input::placeholder { color: var(--muted-foreground); opacity: .4; }
 .terminal-chips { display: none; flex-wrap: wrap; gap: 8px; padding: 8px 16px 16px; border-top: 1px solid var(--border); }
-.terminal-chips button { min-height: 40px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--button-radius); font: 12px var(--font-mono); color: var(--secondary); background: var(--surface); }
+.terminal-chips button { min-height: 44px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--button-radius); font: 12px var(--font-mono); color: var(--secondary); background: var(--surface); }
 .terminal-chips button:disabled { opacity: .4; }
 .scroll-indicator { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 32px auto 24px; width: max-content; font: 10px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
 .scroll-mouse { width: 22px; height: 34px; border: 1px solid var(--border); border-radius: 12px; display: flex; justify-content: center; padding-top: 6px; }
