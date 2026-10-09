@@ -1,11 +1,11 @@
 export type Language = 'EN' | 'RU' | 'UZ';
 const en = {
   nav: ['Home', 'About', 'Skills', 'Projects', 'Chess & Gaming', 'Contact'],
-  available: 'Open to learning & collaboration', role: 'Junior Pentester & Tech Explorer',
+  available: 'Available for CTF teams & learning', role: 'Junior Pentester & Tech Explorer',
   hello: "Hi, I’m", intro: 'Curiosity is my starting point. Security is my direction.',
   description: '15-year-old cybersecurity enthusiast exploring how systems work, how they break, and how to make them stronger.',
   domains: ['Ethical Hacking', 'Web Security', 'AI-Assisted Development'],
-  viewProjects: 'Explore my projects', contactMe: 'Let’s connect', scroll: 'Keep exploring',
+  viewProjects: 'View Projects', contactMe: 'Contact Me', scroll: 'Keep exploring',
   terminal: 'mirislom@portfolio:~', command: 'whoami', terminalRole: 'Junior pentester. Lifelong learner.', terminalStatus: 'Learning, building, evolving.',
   strip: ['SECURITY FIRST', 'CURIOUS BY NATURE', 'THINK STRATEGICALLY', 'BUILD WITH PURPOSE'],
   aboutLabel: '01 / THE PERSON BEHIND THE TERMINAL', aboutTitle: 'A curious mind.', aboutAccent: 'A security mindset.',
@@ -49,7 +49,7 @@ const en = {
 type Content = typeof en;
 const ru: Content = {
   nav: ['Главная', 'Обо мне', 'Навыки', 'Проекты', 'Шахматы и игры', 'Контакты'],
-  available: 'Открыт к обучению и сотрудничеству', role: 'Начинающий пентестер и исследователь технологий',
+  available: 'Открыт для CTF-команд и обучения', role: 'Начинающий пентестер и исследователь технологий',
   hello: 'Привет, я', intro: 'Любопытство — моя отправная точка. Безопасность — моё направление.',
   description: 'Мне 15 лет. Изучаю кибербезопасность: как работают системы, где их слабые места и как сделать их надёжнее.',
   domains: ['Этичный хакинг', 'Веб-безопасность', 'Разработка с ИИ'],
@@ -80,8 +80,8 @@ const ru: Content = {
 };
 const uz: Content = {
   nav: ['Bosh sahifa', 'Men haqimda', 'Ko‘nikmalar', 'Loyihalar', 'Shaxmat va o‘yinlar', 'Aloqa'],
-  available: 'O‘rganish va hamkorlikka ochiqman', role: 'Boshlovchi pentester va texnologiya tadqiqotchisi', hello: 'Salom, men', intro: 'Qiziqish — boshlanish nuqtam. Xavfsizlik — yo‘nalishim.',
-  description: '15 yoshli kiberxavfsizlik ishqibozi. Tizimlar qanday ishlashi, ularning zaif tomonlari va ularni mustahkamlash yo‘llarini o‘rganaman.', domains: ['Etik xakerlik', 'Veb-xavfsizlik', 'AI yordamida dasturlash'], viewProjects: 'Loyihalarni ko‘rish', contactMe: 'Bog‘lanamiz', scroll: 'O‘rganishda davom eting', terminal: 'mirislom@portfolio:~', command: 'whoami', terminalRole: 'Boshlovchi pentester. Doimiy o‘rganuvchi.', terminalStatus: 'O‘rganaman, yarataman, rivojlanaman.',
+  available: 'CTF jamoalari va o‘rganish uchun ochiqman', role: 'Boshlovchi pentester va texnologiya tadqiqotchisi', hello: 'Salom, men', intro: 'Qiziqish — boshlanish nuqtam. Xavfsizlik — yo‘nalishim.',
+  description: '15 yoshli kiberxavfsizlik ishqibozi. Tizimlar qanday ishlashi, ularning zaif tomonlari va ularni mustahkamlash yo‘llarini o‘rganaman.', domains: ['Etik xakerlik', 'Veb-xavfsizlik', 'AI yordamida dasturlash'], viewProjects: 'Loyihalarni ko‘rish', contactMe: 'Bog‘lanish', scroll: 'O‘rganishda davom eting', terminal: 'mirislom@portfolio:~', command: 'whoami', terminalRole: 'Boshlovchi pentester. Doimiy o‘rganuvchi.', terminalStatus: 'O‘rganaman, yarataman, rivojlanaman.',
   strip: ['AVVAL XAVFSIZLIK', 'TABIIY QIZIQUVCHANLIK', 'STRATEGIK FIKRLASH', 'MAQSAD BILAN YARATISH'],
   aboutLabel: '01 / TERMINAL ORTIDAGI INSON', aboutTitle: 'Qiziquvchan ong.', aboutAccent: 'Xavfsizlikka yo‘naltirilgan fikr.', aboutBody: 'Men Mirislom, 15 yoshli texnologiya va kiberxavfsizlik ishqiboziman. Tizimlarni chuqur tushunish, to‘g‘ri savollar berish va qiziqishni amaliy ko‘nikmalarga aylantirishni yoqtiraman.', aboutBody2: 'Shaxmat bir necha yurish oldinga fikrlashga o‘rgatadi. CS2 va RDR2 dunyosi kuzatuvchanlik, qaror qabul qilish va moslashuvchanlikni rivojlantiradi. Xavfsizlik va dasturlashdagi har bir vazifaga shu yondashuvni qo‘llayman.', moreAbout: 'Men haqimda batafsil', values: ['Qiziquvchan bo‘ling', 'Oldindan o‘ylang', 'Etik yo‘l tuting'], valueDescriptions: ['Har kuni yangi narsani o‘rganish.', 'Kengroq manzarani tushunish.', 'Faqat ruxsat bilan sinash.'],
   skillsLabel: '02 / MENING VOSITALARIM', skillsTitle: 'Rivojlanayotgan ko‘nikmalar.', skillsAccent: 'Muhim poydevor.', skillsIntro: 'Har bir tushuncha, skript va mashq orqali mustahkam poydevor quraman.', skillNames: ['Kiberxavfsizlik', 'Veb va AI', 'Mantiq va strategiya'], skillDescriptions: ['Hujumni tushunish. Himoyani kuchaytirish.', 'G‘oyadan ishlaydigan natijagacha.', 'Aniq fikrlash. Ongli yechim.'], skillItems: [['Pentesting asoslari', 'Tarmoq xavfsizligi', 'OWASP Top 10', 'Linux', 'Bash va Python skriptlari'], ['AI yordamida veb-dasturlash', 'HTML va CSS asoslari', 'JavaScript asoslari'], ['Shaxmat strategiyasi', 'Muammolarni yechish', 'Tahliliy fikrlash']], allSkills: 'Barcha ko‘nikmalar',

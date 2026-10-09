@@ -199,3 +199,35 @@ main [data-section] { scroll-margin-top: 88px; }
   .terminal-body { font-size: 10px; overflow-wrap: anywhere; }
   .about-quote p { overflow-wrap: anywhere; }
 }
+
+/* Hero: typer, glitch, interactive terminal, scroll indicator */
+.hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 48px; align-items: center; }
+.hero-typer { font-family: var(--font-mono); font-size: clamp(16px, 1.4vw + 10px, 22px); color: var(--secondary); margin-top: 8px; min-height: 1.6em; }
+.typer-caret { display: inline-block; width: 0.55em; height: 1em; margin-left: 2px; vertical-align: -0.15em; background: var(--primary); animation: blink 1s steps(1) infinite; }
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.glitch::before { color: var(--secondary); animation: glitch-a 0.9s steps(2) 0.2s 1; }
+.glitch::after { color: var(--primary); animation: glitch-b 0.9s steps(2) 0.2s 1; }
+@keyframes glitch-a { 0% { opacity: .8; transform: translate(-3px, 1px); clip-path: inset(10% 0 60% 0); } 25% { transform: translate(3px, -1px); clip-path: inset(50% 0 20% 0); } 50% { transform: translate(-2px, 0); clip-path: inset(30% 0 40% 0); } 75% { opacity: .8; } 100% { opacity: 0; transform: none; } }
+@keyframes glitch-b { 0% { opacity: .7; transform: translate(3px, -1px); clip-path: inset(70% 0 5% 0); } 25% { transform: translate(-3px, 1px); clip-path: inset(15% 0 65% 0); } 50% { transform: translate(2px, 0); clip-path: inset(45% 0 30% 0); } 75% { opacity: .7; } 100% { opacity: 0; transform: none; } }
+.pulse-dot { position: relative; }
+.pulse-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--primary); animation: pulse-ring 1.8s ease-out infinite; }
+@keyframes pulse-ring { from { transform: scale(.5); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
+.hero-cta:hover { box-shadow: var(--glow); }
+.hero-terminal { border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--glass); backdrop-filter: blur(16px); overflow: hidden; font-family: var(--font-mono); cursor: text; }
+.hero-terminal-body { height: 280px; overflow-y: auto; padding: 16px; font-size: 12px; line-height: 1.7; }
+.terminal-entry { margin-bottom: 8px; }
+.terminal-output { color: var(--muted-foreground); white-space: pre-wrap; }
+.terminal-input-row { display: flex; gap: 8px; align-items: center; }
+.terminal-input-row input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: var(--foreground); font: inherit; caret-color: var(--primary); }
+.terminal-input-row input::placeholder { color: var(--muted-foreground); opacity: .4; }
+.terminal-chips { display: none; flex-wrap: wrap; gap: 8px; padding: 8px 16px 16px; border-top: 1px solid var(--border); }
+.terminal-chips button { min-height: 44px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--button-radius); font: 12px var(--font-mono); color: var(--secondary); background: var(--surface); }
+.terminal-chips button:disabled { opacity: .4; }
+.scroll-indicator { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 32px auto 24px; width: max-content; font: 10px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
+.scroll-mouse { width: 22px; height: 34px; border: 1px solid var(--border); border-radius: 12px; display: flex; justify-content: center; padding-top: 6px; }
+.scroll-mouse i { width: 3px; height: 7px; border-radius: 2px; background: var(--primary); animation: scroll-wheel 1.6s ease-in-out infinite; }
+@keyframes scroll-wheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(12px); } }
+@media (hover: none), (max-width: 850px) { .terminal-chips { display: flex; } }
+@media (max-width: 960px) { .hero-layout { grid-template-columns: 1fr; gap: 32px; } .hero-terminal-body { height: 240px; } }
+@media (prefers-reduced-motion: reduce) { .glitch::before, .glitch::after, .pulse-dot::after, .scroll-mouse i, .typer-caret { animation: none; } }
