@@ -12,7 +12,7 @@ type EffectsContextValue = {
 };
 
 const EffectsContext = createContext<EffectsContextValue>({
-  theme: 'dark',
+  theme: 'light',
   toggleTheme: () => {},
   soundEnabled: false,
   toggleSound: () => {},
@@ -26,7 +26,7 @@ const SOUND_KEY = 'islom-sec-sound';
 const MATRIX_KEY = 'islom-sec-matrix';
 
 export function EffectsProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [matrixEnabled, setMatrixEnabled] = useState(true);
   const audioCtxRef = useRef<AudioContext | null>(null);

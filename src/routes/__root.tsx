@@ -83,10 +83,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#0d1117" },
+      { name: "theme-color", content: "#f8f9fa" },
       { title: "islom-sec — Islom, Junior Pentester & Tech Explorer" },
       { name: "description", content: "islom-sec — Islom’s cybersecurity, web security, and AI-assisted development portfolio." },
       { name: "author", content: "islom-sec" },
+      { name: "referrer", content: "strict-origin-when-cross-origin" },
+      { name: "robots", content: "index, follow" },
+      {
+        httpEquiv: "Content-Security-Policy",
+        content: "default-src ‘self’; script-src ‘self’ ‘unsafe-inline’; style-src ‘self’ ‘unsafe-inline’ https://fonts.googleapis.com; font-src ‘self’ https://fonts.gstatic.com; img-src ‘self’ data: https:; connect-src ‘self’ https://api.chess.com; base-uri ‘self’; form-action ‘self’; frame-ancestors ‘none’; object-src ‘none’",
+      },
       { property: "og:title", content: "islom-sec — Islom, Junior Pentester & Tech Explorer" },
       { property: "og:description", content: "Curiosity, ethical hacking, web security, and technology exploration." },
       { property: "og:type", content: "website" },

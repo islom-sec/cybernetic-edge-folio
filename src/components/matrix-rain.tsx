@@ -32,16 +32,17 @@ export function MatrixRain() {
     resize();
 
     const draw = () => {
-      ctx.fillStyle = theme === 'dark' ? 'rgba(13, 17, 23, 0.06)' : 'rgba(245, 248, 250, 0.08)';
+      const isDark = theme === 'dark';
+      ctx.fillStyle = isDark ? 'rgba(13, 17, 23, 0.06)' : 'rgba(248, 249, 250, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
       for (let i = 0; i < columns; i++) {
         const text = chars[Math.floor(Math.random() * chars.length)] ?? '0';
         const x = i * fontSize;
         const y = (drops[i] ?? 0) * fontSize;
-        ctx.fillStyle = theme === 'dark'
+        ctx.fillStyle = isDark
           ? `rgba(0, 255, 102, ${Math.random() * 0.4 + 0.1})`
-          : `rgba(0, 180, 70, ${Math.random() * 0.25 + 0.08})`;
+          : `rgba(0, 77, 26, ${Math.random() * 0.1 + 0.15})`;
         ctx.fillText(text, x, y);
         if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i] = (drops[i] ?? 0) + 1;
