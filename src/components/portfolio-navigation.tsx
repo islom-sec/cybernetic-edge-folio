@@ -57,15 +57,15 @@ export function PortfolioNavigation() {
   }, []);
 
   const labels = {
-    EN: { menu: 'Open menu', navigation: 'Main navigation', language: 'Language', home: 'Mirislom home' },
-    RU: { menu: 'Открыть меню', navigation: 'Главная навигация', language: 'Язык', home: 'Мирислом — главная' },
-    UZ: { menu: 'Menyuni ochish', navigation: 'Asosiy navigatsiya', language: 'Til', home: 'Mirislom — bosh sahifa' },
+    EN: { menu: 'Open menu', navigation: 'Main navigation', language: 'Language', home: 'islom-sec home' },
+    RU: { menu: 'Открыть меню', navigation: 'Главная навигация', language: 'Язык', home: 'islom-sec — главная' },
+    UZ: { menu: 'Menyuni ochish', navigation: 'Asosiy navigatsiya', language: 'Til', home: 'islom-sec — bosh sahifa' },
   }[language];
   const languageControl = <div className="language-switch" data-language={language} role="group" aria-label={labels.language}>
     <span className="language-indicator" aria-hidden="true" />
     {languages.map(lang => <Button key={lang} variant="language" size="sm" aria-pressed={language === lang} onClick={() => setLanguage(lang)}>{lang}</Button>)}
   </div>;
-  const brand = <Link to="/" className="brand" aria-label={labels.home} onClick={() => setMenuOpen(false)}><span className="brand-prompt">~/mirislom<span className="text-primary">$</span></span><span className="brand-cursor" aria-hidden="true">▍</span></Link>;
+  const brand = <Link to="/" className="brand" aria-label={labels.home} onClick={() => setMenuOpen(false)}><span className="brand-prompt">~/islom-sec<span className="text-primary">$</span></span><span className="brand-cursor" aria-hidden="true">▍</span></Link>;
   const links = paths.map((path, i) => <Link key={path} to={path} className={activePath === path ? 'nav-active' : undefined} aria-current={activePath === path ? pathname === path ? 'page' : 'location' : undefined} onClick={() => setMenuOpen(false)}>{t.nav[i]}{menuOpen && <ArrowUpRight aria-hidden="true" size={24} />}</Link>);
 
   return <DialogPrimitive.Root open={menuOpen} onOpenChange={setMenuOpen}>

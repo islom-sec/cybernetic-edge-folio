@@ -12,7 +12,7 @@ export function EasterEgg() {
   const close = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    console.log('%c\n  ~/mirislom$ _\n  ┌──────────────────────────┐\n  │  Curious? Good.          │\n  └──────────────────────────┘', 'color:#00ff66;font-family:monospace');
+    console.log('%c\n  ~/islom-sec$ _\n  ┌──────────────────────────┐\n  │  Curious? Good.          │\n  └──────────────────────────┘', 'color:#00ff66;font-family:monospace');
     console.log('%cMini-challenge: decode this → ' + btoa('Try the Konami code or click the logo 5 times.'), 'color:#22d3ee;font-family:monospace');
     let seq: string[] = [];
     const onKey = (e: KeyboardEvent) => {

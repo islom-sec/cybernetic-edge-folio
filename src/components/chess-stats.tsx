@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/lib/language';
 
-export const CHESS_USERNAME = 'Mirislom01';
+export const CHESS_USERNAME = 'Islom01';
 const CACHE_KEY = `chess-stats-${CHESS_USERNAME}`;
 const CACHE_MS = 10 * 60 * 1000;
 

@@ -1,6 +1,6 @@
-# Cybernetic Edge
+# islom-sec
 
-Create a modern, sleek, high-tech portfolio website for a 15-year-old Cybersecurity Enthusiast and Junior Pentester.
+Create a modern, sleek, high-tech portfolio website for a Cybersecurity Enthusiast and Junior Pentester.
 
 Design & Aesthetic:
 
@@ -16,7 +16,7 @@ The entire website content must dynamically switch between English (EN), Russian
 
 Website Sections & Content:
 
-Hero Section: Intro phrase: 'Hi, I'm Mirislom — Junior Pentester & Tech Explorer'. Highlight key domains: Ethical Hacking, Web Security, AI-Assisted Development.
+Hero Section: Intro phrase: 'Hi, I'm Islom — Junior Pentester & Tech Explorer'. Highlight key domains: Ethical Hacking, Web Security, AI-Assisted Development.
 
 About Me: Passion for Cybersecurity, Strategic Thinking developed through Chess, and Analytical Skills sharpened by Tactical Gaming (CS2, RDR2).
 

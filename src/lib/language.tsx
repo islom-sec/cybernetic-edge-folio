@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { languages, translations, type Language } from './portfolio-content';
-export const LANGUAGE_STORAGE_KEY = 'mirislom-language';
+export const LANGUAGE_STORAGE_KEY = 'islom-sec-language';
 export function detectLanguage(locales: readonly string[]): Language {
   for (const locale of locales) {
     const candidate = locale.split(/[-_]/)[0]?.toUpperCase();

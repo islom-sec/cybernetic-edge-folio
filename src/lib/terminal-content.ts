@@ -17,7 +17,7 @@ export const terminalText: Record<Language, TerminalText> = {
     quick: 'Quick commands',
     output: {
       help: ['Available commands:', 'whoami · skills · projects · chess · contact · clear', '↑ history · Tab autocomplete'],
-      whoami: ['Mirislom — 15 y/o junior pentester & tech explorer.', 'Ethical hacking · web security · AI-assisted development.'],
+      whoami: ['Islom — junior pentester & tech explorer.', 'Ethical hacking · web security · AI-assisted development.'],
       skills: ['[security] pentesting basics, network security, OWASP Top 10', '[systems]  Linux, Bash, Python', '[web]      HTML/CSS/JS, AI-assisted development', '[mind]     chess strategy, problem-solving'],
       projects: ['CTF write-ups — TryHackMe & Hack The Box', 'Security scripts lab — Bash & Python', 'AI web experiments', '→ open /projects for details'],
       chess: ['Chess teaches me to think several moves ahead.', 'Strategy → patience → precision. → /strategy'],
@@ -30,7 +30,7 @@ export const terminalText: Record<Language, TerminalText> = {
     quick: 'Быстрые команды',
     output: {
       help: ['Доступные команды:', 'whoami · skills · projects · chess · contact · clear', '↑ история · Tab автодополнение'],
-      whoami: ['Мирислом — 15 лет, начинающий пентестер и исследователь технологий.', 'Этичный хакинг · веб-безопасность · разработка с ИИ.'],
+      whoami: ['Islom — начинающий пентестер и исследователь технологий.', 'Этичный хакинг · веб-безопасность · разработка с ИИ.'],
       skills: ['[безопасность] основы пентеста, сетевая безопасность, OWASP Top 10', '[системы]      Linux, Bash, Python', '[веб]          HTML/CSS/JS, разработка с ИИ', '[мышление]     шахматная стратегия, решение задач'],
       projects: ['CTF-разборы — TryHackMe и Hack The Box', 'Лаборатория скриптов безопасности — Bash и Python', 'Веб-эксперименты с ИИ', '→ подробнее на /projects'],
       chess: ['Шахматы учат думать на несколько ходов вперёд.', 'Стратегия → терпение → точность. → /strategy'],
@@ -43,7 +43,7 @@ export const terminalText: Record<Language, TerminalText> = {
     quick: 'Tezkor buyruqlar',
     output: {
       help: ['Mavjud buyruqlar:', 'whoami · skills · projects · chess · contact · clear', '↑ tarix · Tab avtoto‘ldirish'],
-      whoami: ['Mirislom — 15 yosh, boshlovchi pentester va texnologiya tadqiqotchisi.', 'Etik xakerlik · veb-xavfsizlik · AI yordamida dasturlash.'],
+      whoami: ['Islom — 15 yosh, boshlovchi pentester va texnologiya tadqiqotchisi.', 'Etik xakerlik · veb-xavfsizlik · AI yordamida dasturlash.'],
       skills: ['[xavfsizlik] pentest asoslari, tarmoq xavfsizligi, OWASP Top 10', '[tizimlar]   Linux, Bash, Python', '[veb]        HTML/CSS/JS, AI yordamida dasturlash', '[tafakkur]   shaxmat strategiyasi, muammolarni hal qilish'],
       projects: ['CTF tahlillari — TryHackMe va Hack The Box', 'Xavfsizlik skriptlari laboratoriyasi — Bash va Python', 'AI bilan veb-tajribalar', '→ batafsil: /projects'],
       chess: ['Shaxmat bir necha yurish oldinga o‘ylashni o‘rgatadi.', 'Strategiya → sabr → aniqlik. → /strategy'],
