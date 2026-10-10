@@ -38,7 +38,7 @@ export function ChessStats() {
   return <div className="chess-stats" aria-live="polite">
     <p className="eyebrow">{t.chessStatsTitle} · @{CHESS_USERNAME}</p>
     {error ? <div className="chess-error"><p>{t.chessError}</p><Button variant="outline" size="sm" onClick={() => void load(true)}>{t.chessRetry}</Button></div> :
-    <div className="chess-stat-grid">{modes.map(([label, mode]) => <div key={label} className="chess-stat">
+    <div className="chess-stat-grid grid-cols-1 md:grid-cols-3">{modes.map(([label, mode]) => <div key={label} className="chess-stat">
       <span className="chess-stat-label">{label}</span>
       {!stats ? <><span className="skeleton skeleton-lg"/><span className="skeleton"/></> : mode?.last ? <>
         <strong>{mode.last.rating}</strong>

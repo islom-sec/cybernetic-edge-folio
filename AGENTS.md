@@ -16,3 +16,5 @@
 - Define all visual roles, type scales, spacing, surfaces, and effects centrally in src/styles.css; shared Button variants consume these tokens so changes stay consistent across pages.
 - Keep navigation behavior in a shared navigation module, using route-aware home-section scrollspy and a modal mobile menu so direct links and accessible focus handling remain intact.
 - Initialize browser language preferences after hydration and persist explicit choices in the shared language provider so server rendering and page navigation remain consistent.
+
+- Define mobile-first layout tracks with Tailwind responsive utilities in page markup and shared media/touch bounds in the stylesheet, so content stays usable across screen sizes.

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/lib/language';
 import { completeCommand, isCommand, terminalCommands, terminalText } from '@/lib/terminal-content';
 
@@ -107,7 +108,7 @@ export function HeroTerminal() {
         )}
       </div>
       <div className="terminal-chips" aria-label={text.quick}>
-        {terminalCommands.map(c => <button key={c} type="button" disabled={!ready} onClick={(e) => { e.stopPropagation(); run(c); }}>{c}</button>)}
+        {terminalCommands.map(c => <Button variant="outline" key={c} type="button" disabled={!ready} onClick={(e) => { e.stopPropagation(); run(c); }}>{c}</Button>)}
       </div>
     </div>
   );

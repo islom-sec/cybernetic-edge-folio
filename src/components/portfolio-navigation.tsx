@@ -52,7 +52,7 @@ export function PortfolioNavigation() {
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
   useEffect(() => {
-    const breakpoint = window.matchMedia('(min-width: 851px)');
+    const breakpoint = window.matchMedia('(min-width: 1280px)');
     const closeOnDesktop = () => { if (breakpoint.matches) setMenuOpen(false); };
     breakpoint.addEventListener('change', closeOnDesktop);
     return () => breakpoint.removeEventListener('change', closeOnDesktop);
@@ -64,9 +64,9 @@ export function PortfolioNavigation() {
     UZ: { menu: 'Menyuni ochish', navigation: 'Asosiy navigatsiya', language: 'Til', home: 'islom-sec — bosh sahifa' },
   }[language];
   const effectButtons = <div className="effect-toggles" role="group" aria-label="Effects">
-    <button type="button" className="effect-toggle" aria-pressed={theme === 'light'} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => { playClick(); toggleTheme(); }}>{theme === 'dark' ? <Sun size={16}/> : <Moon size={16}/>}</button>
-    <button type="button" className="effect-toggle" aria-pressed={soundEnabled} aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'} onClick={() => { toggleSound(); }}>{soundEnabled ? <Volume2 size={16}/> : <VolumeX size={16}/>}</button>
-    <button type="button" className="effect-toggle" aria-pressed={matrixEnabled} aria-label={matrixEnabled ? 'Disable Matrix effect' : 'Enable Matrix effect'} onClick={() => { playClick(); toggleMatrix(); }}>{<Terminal size={16}/>}</button>
+    <Button variant="ghost" size="icon" type="button" className="effect-toggle" aria-pressed={theme === 'light'} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => { playClick(); toggleTheme(); }}>{theme === 'dark' ? <Sun size={16}/> : <Moon size={16}/>}</Button>
+    <Button variant="ghost" size="icon" type="button" className="effect-toggle" aria-pressed={soundEnabled} aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'} onClick={() => { toggleSound(); }}>{soundEnabled ? <Volume2 size={16}/> : <VolumeX size={16}/>}</Button>
+    <Button variant="ghost" size="icon" type="button" className="effect-toggle" aria-pressed={matrixEnabled} aria-label={matrixEnabled ? 'Disable Matrix effect' : 'Enable Matrix effect'} onClick={() => { playClick(); toggleMatrix(); }}>{<Terminal size={16}/>}</Button>
   </div>;
   const languageControl = <div className="language-switch" data-language={language} role="group" aria-label={labels.language}>
     <span className="language-indicator" aria-hidden="true" />
@@ -78,14 +78,14 @@ export function PortfolioNavigation() {
   return <DialogPrimitive.Root open={menuOpen} onOpenChange={setMenuOpen}>
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div ref={progress} className="scroll-progress" aria-hidden="true" />
-      <div className="page-width header-inner">{brand}<nav className="desktop-nav" aria-label={labels.navigation}>{links}</nav><div className="header-tools">{effectButtons}{languageControl}<DialogPrimitive.Trigger asChild><Button ref={menuTrigger} variant="ghost" size="icon" className="mobile-menu-button" aria-label={labels.menu}><Menu /></Button></DialogPrimitive.Trigger></div></div>
+      <div className="page-width header-inner grid grid-cols-[minmax(0,1fr)_auto] xl:flex">{brand}<nav className="desktop-nav hidden xl:flex" aria-label={labels.navigation}>{links}</nav><div className="header-tools"><div className="hidden sm:block">{effectButtons}</div>{languageControl}<DialogPrimitive.Trigger asChild><Button ref={menuTrigger} variant="ghost" size="icon" className="mobile-menu-button inline-flex xl:hidden" aria-label={labels.menu}><Menu /></Button></DialogPrimitive.Trigger></div></div>
     </header>
     <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay className="mobile-menu-backdrop" />
       <DialogPrimitive.Content className="mobile-menu-overlay" aria-describedby={undefined} onCloseAutoFocus={event => { event.preventDefault(); menuTrigger.current?.focus(); }}>
         <DialogPrimitive.Title className="sr-only">{labels.navigation}</DialogPrimitive.Title>
-        <div className="mobile-overlay-header"><div className="page-width header-inner">{brand}<div className="header-tools">{effectButtons}{languageControl}<DialogPrimitive.Close asChild><Button variant="ghost" size="icon" className="mobile-menu-button" aria-label={t.close}><X /></Button></DialogPrimitive.Close></div></div></div>
-        <nav className="mobile-nav page-width" aria-label={labels.navigation}>{links}</nav>
+        <div className="mobile-overlay-header"><div className="page-width header-inner grid grid-cols-[minmax(0,1fr)_auto] xl:flex">{brand}<div className="header-tools"><div className="hidden sm:block">{effectButtons}</div>{languageControl}<DialogPrimitive.Close asChild><Button variant="ghost" size="icon" className="mobile-menu-button inline-flex xl:hidden" aria-label={t.close}><X /></Button></DialogPrimitive.Close></div></div></div>
+        <div className="sm:hidden"><div className="mobile-effect-row page-width">{effectButtons}</div></div><nav className="mobile-nav page-width" aria-label={labels.navigation}>{links}</nav>
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>
   </DialogPrimitive.Root>;
