@@ -75,7 +75,7 @@ export function AiChatbot() {
   const [input, setInput] = useState('');
   const nextId = useRef(0);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const data = chatData[language] ?? chatData.EN;
+  const data = (chatData[language] ?? chatData['EN'])!;
 
   useEffect(() => {
     setMessages([{ id: nextId.current++, role: 'bot', text: data.subtitle }]);

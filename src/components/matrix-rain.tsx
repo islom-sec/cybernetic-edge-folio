@@ -36,7 +36,7 @@ export function MatrixRain() {
     resize();
 
     const observer = new IntersectionObserver(
-      ([entry]) => { visible = entry.isIntersecting; },
+      ([entry]) => { if (entry) visible = entry.isIntersecting; },
       { threshold: 0 }
     );
     observer.observe(canvas);
