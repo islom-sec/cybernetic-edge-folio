@@ -10,6 +10,7 @@ import { ChessStats, CHESS_USERNAME } from '@/components/chess-stats';
 import { Reveal } from '@/components/reveal';
 import shieldImage from '@/assets/cyber-shield.jpg';
 import { EasterEgg } from '@/components/easter-egg';
+import { AiChatbot } from '@/components/ai-chatbot';
 import { extras, skillLevels, writeups, type Platform } from '@/lib/extras-content';
 import { toast } from 'sonner';
 import { useEffects } from '@/lib/effects-provider';
@@ -35,7 +36,7 @@ export function PortfolioShell({ children }: { children: ReactNode }) {
     return () => animation?.cancel();
   }, [language]);
   const x = extras[language];
-  return <><a href="#main" className="skip-link">{x.skip}</a><PortfolioNavigation/><div ref={content} className="translated-content"><main id="main" tabIndex={-1}><Reveal>{children}</Reveal></main><footer className="site-footer page-width"><Link to="/" className="brand"><Terminal size={20}/><span>islom-sec<span className="text-primary">.</span></span></Link><p>{t.footer}</p><span className="footer-ethics"><ShieldCheck size={14}/>{t.ethics}</span><span className="footer-copyright">© 2026 {t.copyright}</span><span className="footer-hint" title={x.footerHint}>{x.footerHint}</span></footer></div><EasterEgg/></>;
+  return <><a href="#main" className="skip-link">{x.skip}</a><PortfolioNavigation/><div ref={content} className="translated-content"><main id="main" tabIndex={-1}><Reveal>{children}</Reveal></main><footer className="site-footer page-width"><Link to="/" className="brand"><Terminal size={20}/><span>islom-sec<span className="text-primary">.</span></span></Link><p>{t.footer}</p><span className="footer-ethics"><ShieldCheck size={14}/>{t.ethics}</span><span className="footer-copyright">© 2026 {t.copyright}</span><span className="footer-hint" title={x.footerHint}>{x.footerHint}</span></footer></div><EasterEgg/><AiChatbot/></>;
 }
 function SectionHeading({ label, title, accent, body }: { label: string; title: string; accent: string; body?: string | undefined }) { return <div className="section-heading"><p className="eyebrow">{label}</p><h2>{title} <span className="text-muted-foreground">{accent}</span></h2>{body && <p className="section-intro">{body}</p>}</div>; }
 export function HomePage() {

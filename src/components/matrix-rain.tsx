@@ -18,10 +18,14 @@ export function MatrixRain() {
       return;
     }
 
+    const isMobile = window.innerWidth < 768;
+    const fontSize = isMobile ? 18 : 14;
+    const charSet = isMobile
+      ? '01ABCDEF<>{}[]/$#'
+      : '01ABCDEF<>{}[]/$#&%@!?*+=~-_|\\';
     let columns = 0;
     let drops: number[] = [];
-    const fontSize = 14;
-    const chars = '01ABCDEF<>{}[]/$#&%@!?*+=~-_|\\';
+    let visible = true;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -31,30 +35,45 @@ export function MatrixRain() {
     };
     resize();
 
-    const draw = () => {
-      const isDark = theme === 'dark';
-      ctx.fillStyle = isDark ? 'rgba(13, 17, 23, 0.06)' : 'rgba(248, 249, 250, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
-      for (let i = 0; i < columns; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)] ?? '0';
-        const x = i * fontSize;
-        const y = (drops[i] ?? 0) * fontSize;
-        ctx.fillStyle = isDark
-          ? `rgba(0, 255, 102, ${Math.random() * 0.4 + 0.1})`
-          : `rgba(0, 77, 26, ${Math.random() * 0.1 + 0.15})`;
-        ctx.fillText(text, x, y);
-        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i] = (drops[i] ?? 0) + 1;
+    const observer = new IntersectionObserver(
+      ([entry]) => { visible = entry.isIntersecting; },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    let lastFrame = 0;
+    const frameInterval = isMobile ? 67 : 0;
+
+    const draw = (now: number) => {
+      if (visible) {
+        if (frameInterval === 0 || now - lastFrame >= frameInterval) {
+          lastFrame = now;
+          const isDark = theme === 'dark';
+          ctx.fillStyle = isDark ? 'rgba(13, 17, 23, 0.06)' : 'rgba(248, 249, 250, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+          for (let i = 0; i < columns; i++) {
+            const text = charSet[Math.floor(Math.random() * charSet.length)] ?? '0';
+            const x = i * fontSize;
+            const y = (drops[i] ?? 0) * fontSize;
+            ctx.fillStyle = isDark
+              ? `rgba(0, 255, 102, ${Math.random() * 0.4 + 0.1})`
+              : `rgba(0, 77, 26, ${Math.random() * 0.1 + 0.15})`;
+            ctx.fillText(text, x, y);
+            if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i] = (drops[i] ?? 0) + 1;
+          }
+        }
       }
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    draw();
+    rafRef.current = requestAnimationFrame(draw);
     window.addEventListener('resize', resize);
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
+      observer.disconnect();
     };
   }, [matrixEnabled, theme]);
 
