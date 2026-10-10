@@ -1,4 +1,6 @@
 # Portfolio roadmap
+- [x] Adapt all pages, navigation, media and controls for mobile-first layouts.
+- [x] Verify every page at 360, 390, 768, 1024 and 1440px, including language variants and menus.
 - [x] Create dark neon portfolio and all content pages.
 - [x] Implement complete EN/RU/UZ language switching.
 - [x] Verify navigation, translations, and mobile layout.
