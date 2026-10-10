@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { useLanguage } from '@/lib/language';
+import { useEffects } from '@/lib/effects-provider';
 import { completeCommand, isCommand, terminalCommands, terminalText } from '@/lib/terminal-content';
 
 type Entry = { id: number; cmd: string };
@@ -10,6 +11,7 @@ export function HeroTyper({ words }: { words: string[] }) {
   const [index, setIndex] = useState(0);
   const [len, setLen] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const { playKey } = useEffects();
   const word = words[index % words.length] ?? '';
   useEffect(() => { setLen(0); setDeleting(false); setIndex(0); }, [words]);
   useEffect(() => {
@@ -19,10 +21,10 @@ export function HeroTyper({ words }: { words: string[] }) {
     const t = setTimeout(() => {
       if (!deleting && len === word.length) setDeleting(true);
       else if (deleting && len === 0) { setDeleting(false); setIndex(i => i + 1); }
-      else setLen(l => l + (deleting ? -1 : 1));
+      else { setLen(l => l + (deleting ? -1 : 1)); if (!deleting) playKey(); }
     }, delay);
     return () => clearTimeout(t);
-  }, [len, deleting, word]);
+  }, [len, deleting, word, playKey]);
   return <p className="hero-typer" aria-label={words.join(', ')}><span className="text-primary">&gt;</span> <span aria-hidden="true">{word.slice(0, len)}</span><span className="typer-caret" aria-hidden="true"/></p>;
 }
 

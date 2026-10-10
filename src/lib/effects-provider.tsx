@@ -7,6 +7,7 @@ type EffectsContextValue = {
   soundEnabled: boolean;
   toggleSound: () => void;
   playClick: () => void;
+  playKey: () => void;
   matrixEnabled: boolean;
   toggleMatrix: () => void;
 };
@@ -17,6 +18,7 @@ const EffectsContext = createContext<EffectsContextValue>({
   soundEnabled: false,
   toggleSound: () => {},
   playClick: () => {},
+  playKey: () => {},
   matrixEnabled: true,
   toggleMatrix: () => {},
 });
@@ -67,22 +69,53 @@ export function EffectsProvider({ children }: { children: ReactNode }) {
       if (!audioCtxRef.current) audioCtxRef.current = new AudioContext();
       const ctx = audioCtxRef.current;
       if (ctx.state === 'suspended') ctx.resume();
+      const baseFreq = 700 + Math.random() * 300;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
       osc.type = 'square';
-      osc.frequency.setValueAtTime(880, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.08);
-      gain.gain.setValueAtTime(0.08, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
-      osc.connect(gain);
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(baseFreq * 2, ctx.currentTime);
+      filter.Q.setValueAtTime(2, ctx.currentTime);
+      osc.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.4, ctx.currentTime + 0.06);
+      gain.gain.setValueAtTime(0.06, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+      osc.connect(filter);
+      filter.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
-      osc.stop(ctx.currentTime + 0.1);
+      osc.stop(ctx.currentTime + 0.08);
+    } catch { /* audio unavailable */ }
+  }, [soundEnabled]);
+
+  const playKey = useCallback(() => {
+    if (!soundEnabled) return;
+    try {
+      if (!audioCtxRef.current) audioCtxRef.current = new AudioContext();
+      const ctx = audioCtxRef.current;
+      if (ctx.state === 'suspended') ctx.resume();
+      const baseFreq = 1200 + Math.random() * 800;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      osc.type = 'triangle';
+      filter.type = 'highpass';
+      filter.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.5, ctx.currentTime + 0.03);
+      gain.gain.setValueAtTime(0.035, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.04);
     } catch { /* audio unavailable */ }
   }, [soundEnabled]);
 
   return (
-    <EffectsContext.Provider value={{ theme, toggleTheme, soundEnabled, toggleSound, playClick, matrixEnabled, toggleMatrix }}>
+    <EffectsContext.Provider value={{ theme, toggleTheme, soundEnabled, toggleSound, playClick, playKey, matrixEnabled, toggleMatrix }}>
       {children}
     </EffectsContext.Provider>
   );
