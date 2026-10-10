@@ -109,7 +109,7 @@
 main [data-section] { scroll-margin-top: 88px; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 21px; font-weight: 600; white-space: nowrap; }
 .brand > svg { color: var(--primary); } .brand-cursor { color: var(--primary); animation: blink 1.2s step-end infinite; }
-.brand-prompt { overflow: hidden; text-overflow: ellipsis; }
+.brand-prompt { white-space: nowrap; }
 .site-header .brand, .mobile-overlay-header .brand { gap: 0; font-size: 17px; }
 .desktop-nav { display: flex; align-items: center; gap: 24px; margin-left: auto; }
 .desktop-nav a { color: var(--muted-foreground); font-size: 12px; white-space: nowrap; position: relative; transition: color .2s; }
